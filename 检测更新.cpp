@@ -34,6 +34,7 @@ int main() {
 	if (version == 0) {
 		cout << "网络未连接:(" << endl;
 		return 0;
+		system("pause");
 	}
 	if (version < 10) {
 		cout << "网络已连接:)" << endl;
