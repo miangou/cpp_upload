@@ -33,18 +33,25 @@ int main() {
 	_sleep(1000);
 	if (version == 0) {
 		cout << "网络未连接:(" << endl;
-		return 0;
 		system("pause");
+		return 0;
 	}
 	if (version < 10) {
 		cout << "网络已连接:)" << endl;
-		cout << "version:00" << version << endl;;
+		cout << "最新版本:00" << version << endl;;
 	} else if (version < 100) {
 		cout << "网络已连接:)" << endl;
-		cout << "version:0" << version << endl;
+		cout << "最新版本:0" << version << endl;
 	} else {
 		cout << "网络已连接:)" << endl;
-		cout << "version:" << version << endl;
+		cout << "最新版本:" << version << endl;
+	}
+	if (v < 10) {
+		cout << "本地版本:00" << v << endl;;
+	} else if (v < 100) {
+		cout << "本地版本:0" << v << endl;
+	} else {
+		cout << "本地版本:" << v << endl;
 	}
 	if (v > version) {
 		cout << "网络错误:(" << endl;
@@ -52,7 +59,7 @@ int main() {
 	} else if (v == version) {
 		cout << "恭喜，您的版本是最新版本 :)" << endl;
 	} else if (v < version) {
-		cout << "有新版本可以更新" << "新版本:" << version << endl << "当前版本:" << v << endl << "是/否升级？(1/2)" << endl;
+		cout << "有新版本可以更新！" << endl << "是/否升级？(1/2)" << endl;
 		cin >> yn;
 	}
 
