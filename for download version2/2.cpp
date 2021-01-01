@@ -74,7 +74,7 @@ int update(int yn) {//自动更新模块
 		in_one( http, dlv );//合并字符串函数
 		in_one( http, _exe );//合并字符串函数
 		system(http);//下载
-		cout << http << endl;
+		//cout << http << endl;
 		system("echo start 检测更新.exe>>ti.bat");
 		system("echo del ti.bat>>ti.bat");
 		system("ti.bat");
