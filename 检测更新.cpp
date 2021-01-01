@@ -5,6 +5,7 @@
 #include <fstream>
 using namespace std;
 int version = -999, linemode;
+int v = 001;//当前版本
 
 void in_one( char *s1, const char *s2 );//提前声明
 void read() {//读取版本号模块
@@ -18,7 +19,6 @@ void read() {//读取版本号模块
 
 int upload() {//检测更新模块
 	int yn = 3;
-	int v = 001;
 	//使用curl获取版本号
 	system("del version.dat");
 	system("cls");
@@ -69,7 +69,7 @@ int update(int yn) {//自动更新模块
 		//合并字符串用于wget
 		char dlv[100];//下载版本
 		_itoa(version, dlv, 100);//int to char
-		char http[1000] = "echo wget -O 检测更新.exe me.miangou.xyz/dl/"; //下载得api
+		char http[1000] = "echo wget -O 检测更新.exe me.miangou.xyz/download/"; //下载得api
 		char _exe[100] = ".exe >>ti.bat";
 		in_one( http, dlv );//合并字符串函数
 		in_one( http, _exe );//合并字符串函数
