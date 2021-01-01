@@ -6,7 +6,8 @@
 using namespace std;
 int version = -999, linemode;
 
-void read() {
+void in_one( char *s1, const char *s2 );//提前声明
+void read() {//读取版本号模块
 	ifstream infile;
 	infile.open("version.dat");
 	infile >> version;
@@ -15,14 +16,9 @@ void read() {
 	system("cls");
 }
 
-//
-//int on_offline() {
-//	system("start ping me.miangou.xyz -n 2\" | findstr /i \"TTL\" >nul 2>nul && echo 1>version.dat || echo 2>version.dat");
-//}
-
-int main() {
-	int v = 001;
+int upload() {//检测更新模块
 	int yn = 3;
+	int v = 001;
 	//使用curl获取版本号
 	system("del version.dat");
 	system("cls");
@@ -62,14 +58,56 @@ int main() {
 		cout << "有新版本可以更新！" << endl << "是/否升级？(1/2)" << endl;
 		cin >> yn;
 	}
+	return yn;
+}
+
+
+
+int update(int yn) {//自动更新模块
 
 	if (yn == 1) {
-		system("wget -P ./download me.miangou.xyz/update.txt ");
+		//合并字符串用于wget
+		char dlv[100];//下载版本
+		_itoa(version, dlv, 100);//int to char
+		char http[1000] = "echo wget -O 检测更新.exe me.miangou.xyz/dl/"; //下载得api
+		char _exe[100] = ".exe >>ti.bat";
+		in_one( http, dlv );//合并字符串函数
+		in_one( http, _exe );//合并字符串函数
+		system(http);//下载
+		cout << http << endl;
+		system("echo start 检测更新.exe>>ti.bat");
+		system("echo del ti.bat>>ti.bat");
+		system("ti.bat");
+
+
+
+
 	} else if (yn == 2) {
 		system("pause");
 		return 0;
 	}
 	system("pause");
+}
 
+//合并char字符串模块
+void in_one( char *s1, const char *s2 ) {
+	while ( *s1 != '\0' )
+		s1++;
+
+	for ( ; *s1 = *s2; s1++, s2++ )
+		; // empty statement
+}
+
+//废弃的检测是否在线模块
+//int on_offline() {
+//	system("start ping me.miangou.xyz -n 2\" | findstr /i \"TTL\" >nul 2>nul && echo 1>version.dat || echo 2>version.dat");
+//}
+
+int main() {
+	system("del ti.bat&cls");
+	system("echo @echo off>ti.bat");
+	system("echo taskkill /f /im 检测更新.exe >>ti.bat");
+	int yn = upload();
+	update(yn);
 	return 0;
 }
