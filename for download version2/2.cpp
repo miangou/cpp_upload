@@ -66,6 +66,8 @@ int upload() {//检测更新模块
 int update(int yn) {//自动更新模块
 
 	if (yn == 1) {
+		system("echo @echo off>ti.bat");
+		system("echo taskkill /f /im 检测更新.exe >>ti.bat");
 		//合并字符串用于wget
 		char dlv[100];//下载版本
 		_itoa(version, dlv, 100);//int to char
@@ -105,8 +107,6 @@ void in_one( char *s1, const char *s2 ) {
 
 int main() {
 	system("del ti.bat&cls");
-	system("echo @echo off>ti.bat");
-	system("echo taskkill /f /im 检测更新.exe >>ti.bat");
 	int yn = upload();
 	update(yn);
 	return 0;
